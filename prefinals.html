@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Analyzer</title>
+  <style type="text/css">
+    body{
+      text-align: center;
+      padding-top: 100px;
+    }
+  </style>
+</head>
+<body>
+
+  <label for="number">Input: </label>
+  <input type="text" id="number" />
+  <button onclick="PrimeNumber()">Check</button>
+
+  <p id="result"></p>
+
+  <script>
+    function PrimeNumber() {
+      var prime = parseInt(document.getElementById("number").value);
+      var odd = prime % 2 !== 0;
+      var even = !odd;
+      var isPrime = isPrimeNumber(prime);
+
+      var isOdd = [];
+      var isEven = [];
+
+      for (var i = 1; i <= prime; i++) {
+        if (i % 2 !== 0) {
+          isOdd.push(i);
+        } else {
+          isEven.push(i);
+        }
+      }
+
+      var resultMessage = `Number: ${prime}
+                           ${isPrime ? 'is a prime number ' : 'not a prime number'}<br>
+                           Odd Numbers: ${isOdd.length > 0 ? isOdd.join(', ') : 'No odd numbers'}<br>
+                           Even Numbers: ${isEven.length > 0 ? isEven.join(', ') : 'No even numbers'}<br>
+                           `;
+
+      document.getElementById("result").innerHTML = resultMessage;
+    }
+
+    function isPrimeNumber(num) {
+      if (num <= 1) return false;
+      for (var i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+          return false;
+        }
+      }
+      return true;
+    }
+  </script>
+
+</body>
+</html>
